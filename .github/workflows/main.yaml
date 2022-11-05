@@ -13,9 +13,11 @@ jobs:
       run: echo "current branch - ${{ github.ref_name }}"
     - name: Checkout the branch
       uses: actions/checkout@v3
-      with:
-        ref: ${{ github.ref_name }}
-    - name: Deployment
+    - name: Node
+      uses: actions/setup-node@v3
+      with: 
+        node-version: 16
+    - name: Deploy
       run: railway up
       env:
         RAILWAY_TOKEN: ${{ secrets.CICD_LLT }}
