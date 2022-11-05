@@ -18,7 +18,7 @@ jobs:
       with: 
         node-version: 16
     - name: Deployment
-      run: railway up
+      run: 'railway up'
       env:
         RAILWAY_TOKEN: ${{ secrets.CICD_LLT }}
     - name: Send custom JSON data to Slack workflow
