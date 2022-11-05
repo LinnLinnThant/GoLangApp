@@ -1,4 +1,4 @@
-name: Main and deploy Todo
+name: Main and deploy
 
 on:
   push:
@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     if: "!contains(github.event.head_commit.message, '#NORUN')"
     steps:
-    - name: Echo the branch name
+    - name: Branch Name Setup
       run: echo "current branch - ${{ github.ref_name }}"
     - name: Checkout the branch
       uses: actions/checkout@v3
@@ -20,7 +20,7 @@ jobs:
       uses: actions/setup-node@v3
       with: 
         node-version: 16
-    - name: Create an incremental release
+    - name: Incremental release
       uses: aurestic/incrementarl-create-release@master
       with:
         flag_branch: true
@@ -31,11 +31,11 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     - name: Install Railway
       run: npm i -g @railway/cli
-    - name: Deployment
+    - name: Railway Up
       run: railway up
       env:
         RAILWAY_TOKEN: ${{ secrets.CICD_LLT }}
-    - name: Send custom JSON data to Slack workflow
+    - name: Send custom JSON format to Slack 
       id: slack
       uses: slackapi/slack-github-action@v1.23.0
       with:
