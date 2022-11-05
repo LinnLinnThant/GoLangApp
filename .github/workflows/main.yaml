@@ -31,7 +31,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     - name: Install Railway
       run: npm i -g @railway/cli
-    - name: Deploy
+    - name: Deployment
       run: railway up
       env:
         RAILWAY_TOKEN: ${{ secrets.CICD_LLT }}
