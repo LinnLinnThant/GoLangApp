@@ -20,6 +20,15 @@ jobs:
       uses: actions/setup-node@v3
       with: 
         node-version: 16
+    - name: Create an incremental release
+      uses: aurestic/incrementarl-create-release@master
+      with:
+        flag_branch: true
+        message: Bump version
+        prev_tag: 'v'
+        update_odoo_module_version: true
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     - name: Install Railway
       run: npm i -g @railway/cli
     - name: Deploy
