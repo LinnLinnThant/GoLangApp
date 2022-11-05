@@ -22,7 +22,7 @@ jobs:
         node-version: 16
     - name: Install Railway
       run: npm i -g @railway/cli
-    - name: Deployment
+    - name: Deploy
       run: railway up
       env:
         RAILWAY_TOKEN: ${{ secrets.CICD_LLT }}
